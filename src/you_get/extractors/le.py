@@ -87,6 +87,14 @@ def video_info(vid,**kwargs):
     m3u8 = get_content(info2["location"]+suffix,decoded=False)
     m3u8_list = decode(m3u8)
     urls = re.findall(r'^[^#][^\r]*',m3u8_list,re.MULTILINE)
+    #print('urls[0] = ', urls[0])
+    #felix to get the really ext of the file
+    if urls[0] != None:
+        print('urls[0].split',urls[0].split('?')[0])
+        ext_str=urls[0].split('?')[0]
+        ext=ext_str.split('.')[-1]
+        print('ext = ', ext)
+
     return ext,urls
 
 def letv_download_by_vid(vid,title, output_dir='.', merge=True, info_only=False,**kwargs):
